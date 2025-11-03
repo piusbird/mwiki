@@ -81,7 +81,9 @@ def api_stub():
 
 @app.errorhandler(404)
 def not_found(e):
-    
+    # Add guard clause here to prevent nested links
+    if request.path.count("/") != 1:
+        return render_template("404.html")
     if request.path.endswith('.md') or request.path.endswith('.txt'):
         return redirect(url_for('view_file', filename=request.path))
     else:
