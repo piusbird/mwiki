@@ -70,6 +70,15 @@ def edit_file(filename):
 
     return render_template("edit.html", filename=filename, saved=saved)
 
+
+@app.route('/api/hello')
+def api_stub():
+    """don't know why the frontend is making this request
+    but let's not segfault the container on the server shall we
+    """
+    user = request.args.get('name')
+    return "Greetz " + user
+
 @app.errorhandler(404)
 def not_found(e):
     
@@ -77,4 +86,3 @@ def not_found(e):
         return redirect(url_for('view_file', filename=request.path))
     else:
         render_template("404.html")
-
