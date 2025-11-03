@@ -3,9 +3,18 @@ import os
 import glob
 
 from flask_misaka import Misaka
-from .beemovie import BEE_MOVIE
+from beemovie import BEE_MOVIE
 
+# UGLY HACK ALERT
 
+ourfile = os.path.dirname(os.path.realpath(__file__))
+STATIC_DIR = os.path.normpath(os.path.join(ourfile, "../static") )
+
+TEMPLATES_DIR = os.path.normpath(os.path.join(ourfile, "../templates") )
+app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATES_DIR)
+Misaka(app)
+if "WIKI_DIR" in os.environ:
+    os.chdir(os.environ["WIKI_DIR"])
 
 @app.route("/")
 def index():
@@ -55,5 +64,3 @@ def edit_file(filename):
 #if __name__ == "__main__":
 #    app.run(debug=True, port=5042)
 
-app = Flask(__name__)
-Misaka(app)
