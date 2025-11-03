@@ -1,3 +1,4 @@
+from ntpath import isfile
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import glob
@@ -5,6 +6,13 @@ import glob
 from flask_misaka import Misaka
 from beemovie import BEE_MOVIE
 
+def chdir_to_wiki():
+     
+    if "WIKI_DIR" in os.environ:
+        print(os.environ["WIKI_DIR"])
+        os.chdir(os.environ["WIKI_DIR"])
+    else:
+        print("not wiki dir`")
 # UGLY HACK ALERT
 
 ourfile = os.path.dirname(os.path.realpath(__file__))
@@ -13,17 +21,21 @@ STATIC_DIR = os.path.normpath(os.path.join(ourfile, "../static") )
 TEMPLATES_DIR = os.path.normpath(os.path.join(ourfile, "../templates") )
 app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATES_DIR)
 Misaka(app)
-if "WIKI_DIR" in os.environ:
-    os.chdir(os.environ["WIKI_DIR"])
-
 @app.route("/")
 def index():
+    if request.path.endswith('.md') or request.path.endswith('.txt'):
+        return redirect(url_for('view_file', filename=request.path))
     """List all markdown files in the current directory"""
     md_files = glob.glob("*.md")
     txt_files = glob.glob("*.txt")
     md_files.extend(txt_files)
     md_files.sort()
-    return render_template("index.html", files=md_files)
+    if os.path.isfile("README.md"):
+        with open("README.md", "r") as rme:
+            readme = rme.read()
+    else:
+        readme = None
+    return render_template("index.html", files=md_files, readme=readme)
 
 
 @app.route("/view/<filename>")

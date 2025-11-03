@@ -13,5 +13,10 @@
 {% else %}
 <p class="no-files">No markdown files found in this directory.</p>
 {% endif %}
+{% if readme %}
+{{readme|markdown}}
+{% else %}
+<p class="no-files"> Edit README.md to enable the landing page</p>
 
+{% endif %}
 {% endblock %}
