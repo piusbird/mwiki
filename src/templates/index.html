@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>📝 Markdown Files</h1>
+{% if files %}
+<ul class="file-list">
+    {% for file in files %}
+    <li>
+        <a href="{{ url_for('view_file', filename=file) }}">{{ file }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="no-files">No markdown files found in this directory.</p>
+{% endif %}
+
+{% endblock %}

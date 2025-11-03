@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+        :root {
+            --barbie-pink: #E94196;
+            --princess-purple: #B565D8;
+            --light-pink: #FFB7D5;
+            --hot-pink: #FF1493;
+            --lavender: #E6B8F5;
+            --cream: #FFF5F7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier Prime', 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--barbie-pink) 0%, var(--princess-purple) 100%);
+            color: #2a0a2e;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--cream);
+            padding: 40px;
+            border: 4px dashed var(--hot-pink);
+            box-shadow: 8px 8px 0 var(--princess-purple);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--hot-pink);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 3px solid var(--barbie-pink);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--princess-purple);
+            margin: 25px 0 15px;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--barbie-pink);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 3px solid var(--hot-pink);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+        }
+
+        .button:hover {
+            background: var(--princess-purple);
+            border-color: var(--lavender);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--hot-pink);
+        }
+
+        .button-secondary {
+            background: var(--princess-purple);
+            border-color: var(--lavender);
+        }
+
+        .button-secondary:hover {
+            background: var(--barbie-pink);
+            border-color: var(--hot-pink);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            border: 3px solid var(--barbie-pink);
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--princess-purple);
+            box-shadow: 0 0 0 3px var(--lavender);
+        }
+
+        .card {
+            background: white;
+            border: 3px solid var(--barbie-pink);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 5px 5px 0 var(--light-pink);
+        }
+
+        .card h3 {
+            color: var(--princess-purple);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        blockquote {
+            border-left: 5px solid var(--barbie-pink);
+            padding-left: 20px;
+            margin: 20px 0;
+            background: var(--light-pink);
+            padding: 15px 20px;
+            font-style: italic;
+        }
+
+        code {
+            background: var(--lavender);
+            padding: 2px 6px;
+            font-family: 'Courier Prime', monospace;
+            color: var(--hot-pink);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--princess-purple);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border: 2px solid var(--lavender);
+            margin: 5px;
+        }

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Editor {{filename}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit a page</h1>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'input-area')">Editor</button>
+        <button class="tablinks" onclick="openTab(event, 'document-rendered')">Preview</button>
+    </div>
+    <form method="post">
+        <!-- Textarea for Markdown input -->
+        <div id="input-area" class="tabcontent">
+            <textarea name="saved" id="document-input" rows="10" cols="50">{{saved}}</textarea>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="button save-btn">Save Changes</button>
+            <a href="{{ url_for('view_file', filename=filename) }}" class="button cancel-btn">Cancel</a>
+        </div>
+    </form>
+    <!-- Div to display rendered Markdown -->
+    <div id="document-rendered" class="tabcontent"></div>
+
+    <div class="tools">
+        <a href="#">Use The Advanced Editor</a>
+        <menu>
+            <li><button id="activate" onclick="activeAdvanced()">Activate</button></li>
+            <li><button id="kill" onclick="killAdvanced()">Kill</button></li>
+        </menu>
+    </div>
+</div>
+{% endblock %}

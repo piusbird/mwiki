@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Viewer - {{filename}}{% endblock %}
+
+{% block content %}
+<h1> {{filename}} Not found </h1>
+<p> To create this page <a href="{{url_for('edit_file', filename=filename)}}"> Click Here</a></p>
+{% endblock %}
