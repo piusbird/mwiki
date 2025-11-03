@@ -23,8 +23,6 @@ app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATES_DIR)
 Misaka(app)
 @app.route("/")
 def index():
-    if request.path.endswith('.md') or request.path.endswith('.txt'):
-        return redirect(url_for('view_file', filename=request.path))
     """List all markdown files in the current directory"""
     md_files = glob.glob("*.md")
     txt_files = glob.glob("*.txt")
@@ -72,7 +70,11 @@ def edit_file(filename):
 
     return render_template("edit.html", filename=filename, saved=saved)
 
-
-#if __name__ == "__main__":
-#    app.run(debug=True, port=5042)
+@app.errorhandler(404)
+def not_found(e):
+    
+    if request.path.endswith('.md') or request.path.endswith('.txt'):
+        return redirect(url_for('view_file', filename=request.path))
+    else:
+        render_template("404.html")
 
