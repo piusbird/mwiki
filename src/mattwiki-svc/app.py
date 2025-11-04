@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 import os
 import sys
 import glob
@@ -93,6 +93,20 @@ def api_stub():
     """
     user = request.args.get("name")
     return "Greetz " + user
+
+
+@app.route("/raw/<filename>")
+def raw_file(filename):
+    """View a markdown file"""
+    if not (filename.endswith(".md") or filename.endswith(".txt")):
+        return "Invalid file type", 400
+
+    if not os.path.exists(filename):
+        return "file not found\n", 404
+
+    with open(filename, "r", encoding="utf-8") as f:
+        content = f.read()
+    return Response(content, content_type="text/plain; charset=utf-8", status=201)
 
 
 @app.errorhandler(404)

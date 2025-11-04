@@ -3,7 +3,8 @@
 {% block title %}Viewer - {{filename}}{% endblock %}
 
 {% block content %}
-<a href="{{url_for('edit_file', filename=filename)}}" , class="button"> Edit Page</a>
+<a href="{{url_for('edit_file', filename=filename)}}" , class="button">Edit Page</a>
+-&gt; <a href="{{url_for('raw_file', filename=filename)}}" , class="button">Raw</a>
 <hr>
 <h1> Viewing {{filename}} </h1>
 {{mkd|markdown}}
