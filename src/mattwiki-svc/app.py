@@ -19,8 +19,9 @@ ourfile = os.path.dirname(os.path.realpath(__file__))
 STATIC_DIR = os.path.normpath(os.path.join(ourfile, "../static") )
 
 TEMPLATES_DIR = os.path.normpath(os.path.join(ourfile, "../templates") )
+md = Misaka(fenced_code=True, underline=True, math=True)
 app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATES_DIR)
-Misaka(app)
+md.init_app(app)
 @app.route("/")
 def index():
     """List all markdown files in the current directory"""
