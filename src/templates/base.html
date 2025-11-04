@@ -26,10 +26,17 @@
     </main>
 
     <footer>
-        <p>&copy; {{ current_year }} Flask Starter. All rights reserved.</p>
     </footer>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="module">
+        import mermaid from "{{url_for('static', filename='js/mermaid.esm.min.mjs')}}"
+        mermaid.initialize({ startOnLoad: false });
+        await mermaid.run({
+            querySelector: '.language-mermaid',
+        });
+
+    </script>
 </body>
 
 </html>
