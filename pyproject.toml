@@ -5,6 +5,9 @@ description = "A simple flatfile  wiki"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "flask>=3.0.3", "Flask-Misaka",
-    "black", "ruff"
+    "flask>=3.0.3",
+    "Flask-Misaka",
+    "black",
+    "ruff",
+    "pygit2>=1.19.0",
 ]
